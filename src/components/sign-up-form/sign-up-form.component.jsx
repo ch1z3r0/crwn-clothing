@@ -5,7 +5,7 @@ import {
 } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
-import { UserContext } from '../../contexts/user,contexts';
+// import { UserContext } from '../../contexts/user.contexts';
 
 import './sign-up-form.styles.scss';
 
@@ -20,13 +20,13 @@ const SignUpForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { displayName, email, password, confirmPassword } = formFields;
 
-	console.log('sign up rendered');
+	// console.log('sign up rendered');
 
 	const resetFormFields = () => {
 		setFormFields(defaultFormFields);
 	};
 
-	console.log(formFields);
+	// console.log(formFields);
 
 	const onSubmitHandler = async (event) => {
 		// prevent user creating on default state of the form
