@@ -1,5 +1,5 @@
 import { Outlet, Link } from 'react-router-dom';
-import { Fragment, useContext } from 'react';
+import { Fragment, useContext, useState } from 'react';
 
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 
@@ -13,12 +13,12 @@ import './navigation.styles.scss';
 
 const Navigation = () => {
 	const { currentUser } = useContext(UserContext);
-	// console.log(currentUser);
 
-	// const signOutHandler = async () => {
-	// 	await signOutUser();
-	// 	setCurrentUser(null);
-	// };
+	const [isVisible, setIsVisible] = useState(false);
+
+	const toggleCartDisplay = () => {
+		setIsVisible(!isVisible);
+	};
 
 	return (
 		<Fragment>
@@ -42,9 +42,9 @@ const Navigation = () => {
 							SIGN IN
 						</Link>
 					)}
-					<CartIcon />
+					<CartIcon toggleCartDisplay={toggleCartDisplay} />
+					{isVisible && <CartDropdown />}
 				</div>
-				<CartDropdown />
 			</div>
 			{<Outlet />}
 		</Fragment>
