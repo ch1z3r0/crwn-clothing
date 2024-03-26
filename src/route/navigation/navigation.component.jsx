@@ -7,6 +7,8 @@ import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 
 import { UserContext } from '../../contexts/user.contexts';
+import { ShoppingCartContext } from '../../contexts/shopping-cart.contexts';
+
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 import './navigation.styles.scss';
@@ -14,11 +16,13 @@ import './navigation.styles.scss';
 const Navigation = () => {
 	const { currentUser } = useContext(UserContext);
 
-	const [isVisible, setIsVisible] = useState(false);
+	const { isCartOpen } = useContext(ShoppingCartContext);
 
-	const toggleCartDisplay = () => {
-		setIsVisible(!isVisible);
-	};
+	// const [isVisible, setIsVisible] = useState(false);
+
+	// const toggleCartDisplay = () => {
+	// 	setIsVisible(!isVisible);
+	// };
 
 	return (
 		<Fragment>
@@ -42,9 +46,9 @@ const Navigation = () => {
 							SIGN IN
 						</Link>
 					)}
-					<CartIcon toggleCartDisplay={toggleCartDisplay} />
-					{isVisible && <CartDropdown />}
+					<CartIcon /* toggleCartDisplay={toggleCartDisplay} */ />
 				</div>
+				{isCartOpen && <CartDropdown />}
 			</div>
 			{<Outlet />}
 		</Fragment>
